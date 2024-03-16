@@ -1,12 +1,8 @@
-#include "Game.h"
+#include "App.h"
 
 int main()
 {
-    Game game;
-    while (game.running())
-    {
-        game.update();
-        game.render();
-    }
+    App app;
+    app.run();
     return 0;
 }

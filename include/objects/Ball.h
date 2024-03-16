@@ -2,6 +2,8 @@
 
 #include <SFML/Graphics.hpp>
 
+#include "Paddle.h"
+
 class Ball : public sf::CircleShape
 {
 private:
@@ -10,6 +12,8 @@ private:
     float moveSpeedX;
     float moveSpeedY;
     sf::Vector2f initPosition;
+    float deviationRate;
+    bool direction; // false - left, true - right
 
 public:
     // constructors/destructors
@@ -19,6 +23,6 @@ public:
     void draw(sf::RenderWindow &window);
     void reset();
     void setInitPosition(sf::Vector2f position);
-    void setMoveSpeed(float moveSpeed);
-    float getMoveSpeed();
+    void handleCollisions(Paddle paddleLeft, Paddle paddleRight, sf::RenderWindow &window);
+    void handleMovement();
 };
