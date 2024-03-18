@@ -2,7 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "Paddle.h"
+#include "Player.h"
 
 class Ball : public sf::CircleShape
 {
@@ -23,6 +23,7 @@ public:
     void draw(sf::RenderWindow &window);
     void reset();
     void setInitPosition(sf::Vector2f position);
-    void handleCollisions(Paddle paddleLeft, Paddle paddleRight, sf::RenderWindow &window);
+    void handleCollisions(Player &playerLeft, Player &playerRight, sf::RenderWindow *window);
     void handleMovement();
+    void handleOutOfBounds();
 };

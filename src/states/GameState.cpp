@@ -1,6 +1,15 @@
 #include "GameState.h"
 
-// init functions
+// init methods
+
+void GameState::initPlayers()
+{
+    /*
+        Initializes the players of the Game class.
+    */
+    this->playerLeft = Player(true, this->font);
+    this->playerRight = Player(false, this->font);
+}
 
 void GameState::initGameObjects()
 {
@@ -9,8 +18,8 @@ void GameState::initGameObjects()
     */
     int windowSizeX = this->window->getSize().x;
     int windowSizeY = this->window->getSize().y;
-    this->paddleLeft.setPosition(50, windowSizeY / 2 - this->paddleLeft.getSize().y / 2);
-    this->paddleRight.setPosition(windowSizeX - 50 - this->paddleRight.getSize().x, windowSizeY / 2 - this->paddleRight.getSize().y / 2);
+    this->playerLeft.paddle.setPosition(50, windowSizeY / 2 - this->playerLeft.paddle.getSize().y / 2);
+    this->playerRight.paddle.setPosition(windowSizeX - 50 - this->playerRight.paddle.getSize().x, windowSizeY / 2 - this->playerRight.paddle.getSize().y / 2);
     this->ball.setInitPosition(sf::Vector2f(windowSizeX / 2.f, windowSizeY / 2.f));
     this->ball.setPointCount(100);
     this->ball.reset();
@@ -18,12 +27,14 @@ void GameState::initGameObjects()
 
 // constructors/destructors
 
-GameState::GameState(sf::RenderWindow *window)
+GameState::GameState(sf::RenderWindow *window, sf::Font &font)
 {
     /*
         The constructor of the Game class. Calls all the init functions to initialize the game.
     */
     this->window = window;
+    this->font = font;
+    this->initPlayers();
     this->initGameObjects();
 }
 
@@ -43,30 +54,30 @@ void GameState::handleInput()
     */
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
     {
-        if (this->paddleLeft.getPosition().y > 0)
+        if (this->playerLeft.paddle.getPosition().y > 0)
         {
-            this->paddleLeft.moveUp();
+            this->playerLeft.paddle.moveUp();
         }
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
     {
-        if (this->paddleLeft.getPosition().y + this->paddleLeft.getSize().y < this->window->getSize().y)
+        if (this->playerLeft.paddle.getPosition().y + this->playerLeft.paddle.getSize().y < this->window->getSize().y)
         {
-            this->paddleLeft.moveDown();
+            this->playerLeft.paddle.moveDown();
         }
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
     {
-        if (this->paddleRight.getPosition().y > 0)
+        if (this->playerRight.paddle.getPosition().y > 0)
         {
-            this->paddleRight.moveUp();
+            this->playerRight.paddle.moveUp();
         }
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
     {
-        if (this->paddleRight.getPosition().y + this->paddleRight.getSize().y < this->window->getSize().y)
+        if (this->playerRight.paddle.getPosition().y + this->playerRight.paddle.getSize().y < this->window->getSize().y)
         {
-            this->paddleRight.moveDown();
+            this->playerRight.paddle.moveDown();
         }
     }
 }
@@ -78,7 +89,7 @@ void GameState::update()
     /*
         Updates game objects before rendering them to the window.
     */
-    this->ball.handleCollisions(this->paddleLeft, this->paddleRight, *this->window);
+    this->ball.handleCollisions(this->playerLeft, this->playerRight, this->window);
     this->ball.handleMovement();
 
     this->handleInput();
@@ -89,7 +100,9 @@ void GameState::render()
     /*
         Renders game objects to the window. Clears the window at the beginning and sets the background color to black.
     */
-    this->paddleLeft.draw(*this->window);
-    this->paddleRight.draw(*this->window);
+    this->playerLeft.paddle.draw(*this->window);
+    this->playerRight.paddle.draw(*this->window);
     this->ball.draw(*this->window);
+    this->playerLeft.renderScore(this->window);
+    this->playerRight.renderScore(this->window);
 }

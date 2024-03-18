@@ -13,6 +13,17 @@ void App::initWindow()
     this->window->setFramerateLimit(144);
 }
 
+void App::initFont()
+{
+    /*
+        Initializes the font of the game. Loads the font from the file.
+    */
+    if (!this->font.loadFromFile("C:/Windows/Fonts/arial.ttf"))
+    {
+        std::cout << "ERROR::APP::INITFONT::Failed to load font!" << std::endl;
+    }
+}
+
 void App::update()
 {
     this->stateManager.update();
@@ -35,6 +46,7 @@ App::App()
         The constructor of the App class. Calls the initWindow function to initialize the window.
     */
     this->initWindow();
+    this->initFont();
 }
 
 App::~App()
@@ -50,7 +62,7 @@ void App::run()
     /*
         The run function of the App class. Runs the game loop.
     */
-    this->stateManager.setState(std::make_unique<GameState>(this->window));
+    this->stateManager.setState(std::make_unique<GameState>(this->window, this->font));
 
     while (this->window->isOpen())
     {
