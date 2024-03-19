@@ -42,21 +42,17 @@ void Ball::handleCollisions(Player &playerLeft, Player &playerRight, sf::RenderW
     sf::Vector2f paddleLeftPosition = playerLeft.paddle.getPosition();
     sf::Vector2f paddleRightPosition = playerRight.paddle.getPosition();
 
-    if (ballPosition.x - this->getRadius() < paddleLeftPosition.x + playerLeft.paddle.getSize().x &&
-        ballPosition.y + this->getRadius() > paddleLeftPosition.y &&
-        ballPosition.y - this->getRadius() < paddleLeftPosition.y + playerLeft.paddle.getSize().y)
+    if (this->getGlobalBounds().intersects(playerLeft.paddle.getHitboxBounds()))
     {
         this->direction = true;
         this->deviationRate = (ballPosition.y - paddleLeftPosition.y - playerLeft.paddle.getSize().y / 2) / playerLeft.paddle.getSize().y / 0.5;
-        this->moveSpeed + 0.05f;
+        this->moveSpeed += 0.05f;
     }
-    if (ballPosition.x + this->getRadius() > paddleRightPosition.x &&
-        ballPosition.y + this->getRadius() > paddleRightPosition.y &&
-        ballPosition.y - this->getRadius() < paddleRightPosition.y + playerRight.paddle.getSize().y)
+    if (this->getGlobalBounds().intersects(playerRight.paddle.getHitboxBounds()))
     {
         this->direction = false;
         this->deviationRate = (ballPosition.y - paddleRightPosition.y - playerRight.paddle.getSize().y / 2) / playerRight.paddle.getSize().y / 0.5;
-        this->moveSpeed + 0.05f;
+        this->moveSpeed += 0.05f;
     }
     if (ballPosition.y - this->getRadius() < 0 || ballPosition.y + this->getRadius() > window->getSize().y)
     {
