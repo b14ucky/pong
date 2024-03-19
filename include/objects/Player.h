@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 
 #include <iostream>
+#include <string>
 #include <sstream>
 #include <iomanip>
 
@@ -18,6 +19,7 @@ private:
 public:
     bool isComputer;
     Paddle paddle;
+
     // constructors/destructors
     Player();
     Player(bool isComputer, sf::Font &font);

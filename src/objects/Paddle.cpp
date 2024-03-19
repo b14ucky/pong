@@ -1,7 +1,6 @@
 #include "Paddle.h"
 
 // constructor
-
 Paddle::Paddle()
 {
     /*
@@ -20,7 +19,7 @@ Paddle::Paddle()
 
 void Paddle::draw(sf::RenderWindow &window)
 {
-    this->hitbox.setPosition(this->getPosition().x + this->getSize().x / 2 - this->hitbox.getSize().x / 2, this->getPosition().y);
+    this->hitbox.setPosition(this->hitboxPositionX, this->getPosition().y);
     window.draw(*this);
     window.draw(this->hitbox);
 }
@@ -35,4 +34,19 @@ void Paddle::moveDown()
 {
     this->move(sf::Vector2f(0, this->moveSpeed));
     this->hitbox.move(sf::Vector2f(0, -this->moveSpeed));
+}
+
+void Paddle::setInitPosition(sf::Vector2f initPosition, float hitboxPositionX)
+{
+    this->initPosition = initPosition;
+    this->setPosition(initPosition);
+    this->hitboxPositionX = hitboxPositionX;
+    this->hitbox.setPosition(this->hitboxPositionX, this->initPosition.y);
+}
+
+// getters
+
+sf::FloatRect Paddle::getHitboxBounds()
+{
+    return this->hitbox.getGlobalBounds();
 }

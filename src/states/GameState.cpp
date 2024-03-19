@@ -18,8 +18,8 @@ void GameState::initGameObjects()
     */
     int windowSizeX = this->window->getSize().x;
     int windowSizeY = this->window->getSize().y;
-    this->playerLeft.paddle.setPosition(50, windowSizeY / 2 - this->playerLeft.paddle.getSize().y / 2);
-    this->playerRight.paddle.setPosition(windowSizeX - 50 - this->playerRight.paddle.getSize().x, windowSizeY / 2 - this->playerRight.paddle.getSize().y / 2);
+    this->playerLeft.paddle.setInitPosition(sf::Vector2f(50, windowSizeY / 2 - this->playerLeft.paddle.getSize().y / 2), 50 + this->playerLeft.paddle.getSize().x - 2);
+    this->playerRight.paddle.setInitPosition(sf::Vector2f(windowSizeX - 50 - this->playerRight.paddle.getSize().x, windowSizeY / 2 - this->playerRight.paddle.getSize().y / 2), windowSizeX - 50 - this->playerRight.paddle.getSize().x);
     this->ball.setInitPosition(sf::Vector2f(windowSizeX / 2.f, windowSizeY / 2.f));
     this->ball.setPointCount(100);
     this->ball.reset();
@@ -93,6 +93,11 @@ void GameState::update()
     this->ball.handleCollisions(this->playerLeft, this->playerRight, this->window);
     this->playerLeft.updateText();
     this->playerRight.updateText();
+
+    if (this->ball.getGlobalBounds().intersects(this->playerLeft.paddle.getHitboxBounds()) || this->ball.getGlobalBounds().intersects(this->playerRight.paddle.getHitboxBounds()))
+    {
+        std::cout << "collision" << std::endl;
+    }
 
     this->handleInput();
 }
