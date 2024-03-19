@@ -15,6 +15,7 @@ private:
     sf::RenderWindow *window;
     sf::VideoMode videoMode;
     sf::Event event;
+    sf::Font font;
     StateManager stateManager;
 
 public:
@@ -26,6 +27,7 @@ public:
 private:
     // private functions
     void initWindow();
+    void initFont();
     void update();
     void render();
 };

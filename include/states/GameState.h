@@ -5,33 +5,34 @@
 #include <iostream>
 
 #include "State.h"
-#include "Paddle.h"
 #include "Ball.h"
+#include "Player.h"
 
 class GameState : public State
 {
 private:
     // game objects
-    Paddle paddleLeft;
-    Paddle paddleRight;
     Ball ball;
+    Player playerLeft;
+    Player playerRight;
 
     // window
     sf::RenderWindow *window;
+    sf::Font font;
 
 public:
     // constructors/destructors
-    GameState(sf::RenderWindow *window);
+    GameState(sf::RenderWindow *window, sf::Font &font);
     virtual ~GameState();
 
-    // init functions
-    // void initVariables();
+    // init methods
     void initGameObjects();
+    void initPlayers();
 
-    // main update/render functions
+    // main update/render methods
     void update() override;
     void render() override;
 
-    // other functions
+    // other methods
     void handleInput() override;
 };

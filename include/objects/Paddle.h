@@ -9,6 +9,7 @@ private:
     int height;
     int width;
     float moveSpeed;
+    sf::RectangleShape hitbox;
 
 public:
     // constructor
