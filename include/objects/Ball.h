@@ -9,8 +9,7 @@ class Ball : public sf::CircleShape
 private:
     // variables
     float moveSpeed;
-    float moveSpeedX;
-    float moveSpeedY;
+    float initMoveSpeed;
     sf::Vector2f initPosition;
     float deviationRate;
     bool direction; // false - left, true - right

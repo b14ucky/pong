@@ -3,10 +3,11 @@
 // constructor
 Ball::Ball()
 {
+    this->initMoveSpeed = 2.75f;
     this->setRadius(15);
     this->setFillColor(sf::Color::White);
     this->setOrigin(this->getRadius(), this->getRadius());
-    this->moveSpeed = 1.75f;
+    this->moveSpeed = this->initMoveSpeed;
     this->deviationRate = 0;
     this->direction = false; // false - left, true - right
 }
@@ -20,7 +21,7 @@ void Ball::draw(sf::RenderWindow &window)
 void Ball::reset()
 {
     this->setPosition(this->initPosition);
-    this->moveSpeed = 1.75f;
+    this->moveSpeed = this->initMoveSpeed;
 }
 
 void Ball::setInitPosition(sf::Vector2f position)

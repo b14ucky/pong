@@ -29,14 +29,15 @@ void Player::initText(sf::Font &font)
     this->text.setFont(font);
     this->text.setCharacterSize(50);
     this->text.setFillColor(sf::Color::White);
-    this->text.setString(std::to_string(this->score));
+    this->text.setString("00");
+    int textWidth = this->text.getGlobalBounds().width;
     if (this->isComputer)
     {
-        this->text.setPosition(256, 50);
+        this->text.setPosition(256 - textWidth / 2, 50);
     }
     else
     {
-        this->text.setPosition(768, 50);
+        this->text.setPosition(768 - textWidth / 2, 50);
     }
 }
 
@@ -68,7 +69,16 @@ void Player::appendScore()
         Appends the score of the player by 1.
     */
     this->score++;
-    this->text.setString(std::to_string(this->score));
+}
+
+void Player::updateText()
+{
+    /*
+        Updates the text of the player to the current score.
+    */
+    std::stringstream scoreString;
+    scoreString << std::setfill('0') << std::setw(2) << this->score;
+    this->text.setString(scoreString.str());
 }
 
 void Player::renderScore(sf::RenderWindow *window)

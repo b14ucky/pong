@@ -3,6 +3,8 @@
 #include <SFML/Graphics.hpp>
 
 #include <iostream>
+#include <sstream>
+#include <iomanip>
 
 #include "Paddle.h"
 
@@ -22,6 +24,7 @@ public:
 
     // other methods
     void appendScore();
+    void updateText();
     void renderScore(sf::RenderWindow *window);
 
     // init methods

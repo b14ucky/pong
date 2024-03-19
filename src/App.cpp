@@ -18,7 +18,7 @@ void App::initFont()
     /*
         Initializes the font of the game. Loads the font from the file.
     */
-    if (!this->font.loadFromFile("C:/Windows/Fonts/arial.ttf"))
+    if (!this->font.loadFromFile("./assets/fonts/pong-score.ttf"))
     {
         std::cout << "ERROR::APP::INITFONT::Failed to load font!" << std::endl;
     }

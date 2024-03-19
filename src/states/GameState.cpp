@@ -89,8 +89,10 @@ void GameState::update()
     /*
         Updates game objects before rendering them to the window.
     */
-    this->ball.handleCollisions(this->playerLeft, this->playerRight, this->window);
     this->ball.handleMovement();
+    this->ball.handleCollisions(this->playerLeft, this->playerRight, this->window);
+    this->playerLeft.updateText();
+    this->playerRight.updateText();
 
     this->handleInput();
 }
