@@ -29,7 +29,8 @@ void Ball::setInitPosition(sf::Vector2f position)
     this->initPosition = position;
 }
 
-void Ball::handleCollisions(Player &playerLeft, Player &playerRight, sf::RenderWindow *window)
+template <typename T1, typename T2>
+void Ball::handleCollisions(T1 &playerLeft, T2 &playerRight, sf::RenderWindow *window)
 {
     /*
         Moves the ball left or right depending on the ballDirection variable.
@@ -95,3 +96,6 @@ void Ball::handleOutOfBounds()
     this->reset();
     this->deviationRate = 0;
 }
+
+template void Ball::handleCollisions(HumanPlayer &playerLeft, HumanPlayer &playerRight, sf::RenderWindow *window);
+// template void Ball::handleCollisions(ComputerPlayer &playerLeft, ComputerPlayer &playerRight, sf::RenderWindow *window);

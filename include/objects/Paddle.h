@@ -1,11 +1,10 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-#include <string>
 
 class Paddle : public sf::RectangleShape
 {
-private:
+protected:
     // variables
     int height;
     int width;
@@ -23,7 +22,9 @@ public:
     void moveUp();
     void moveDown();
     void setInitPosition(sf::Vector2f initPosition, float hitboxPositionX);
+    virtual void handleMovement(float windowSizeY);
 
-    // getters
+    // getters/setters
     sf::FloatRect getHitboxBounds();
+    void setMoveSpeed(float moveSpeed);
 };

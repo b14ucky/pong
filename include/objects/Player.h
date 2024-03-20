@@ -11,14 +11,13 @@
 
 class Player
 {
-private:
+protected:
     int score;
     sf::Font font;
     sf::Text text;
 
 public:
     bool isComputer;
-    Paddle paddle;
 
     // constructors/destructors
     Player();

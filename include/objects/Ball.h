@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "Player.h"
+#include "HumanPlayer.h"
 
 class Ball : public sf::CircleShape
 {
@@ -22,7 +23,8 @@ public:
     void draw(sf::RenderWindow &window);
     void reset();
     void setInitPosition(sf::Vector2f position);
-    void handleCollisions(Player &playerLeft, Player &playerRight, sf::RenderWindow *window);
+    template <typename T1, typename T2>
+    void handleCollisions(T1 &playerLeft, T2 &playerRight, sf::RenderWindow *window);
     void handleMovement();
     void handleOutOfBounds();
 };
