@@ -5,6 +5,7 @@
 #include "Player.h"
 #include "HumanPlayer.h"
 #include "AIPlayer.h"
+#include "RandomNumberGenerator.h"
 
 class Ball : public sf::CircleShape
 {
@@ -15,6 +16,7 @@ private:
     sf::Vector2f initPosition;
     float deviationRate;
     bool direction; // false - left, true - right
+    RandomNumberGenerator rng;
 
 public:
     // constructors/destructors

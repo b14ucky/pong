@@ -9,7 +9,8 @@ Ball::Ball()
     this->setOrigin(this->getRadius(), this->getRadius());
     this->moveSpeed = this->initMoveSpeed;
     this->deviationRate = 0;
-    this->direction = false; // false - left, true - right
+    rng = RandomNumberGenerator(0, 1);
+    this->direction = this->rng(); // false - left, true - right
 }
 
 // methods
