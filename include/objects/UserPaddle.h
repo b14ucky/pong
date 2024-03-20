@@ -1,7 +1,6 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-#include <string>
 
 #include "Paddle.h"
 
@@ -12,5 +11,5 @@ public:
     UserPaddle();
 
     // methods
-    void handleMovement(float windowSizeY) override;
+    void handleMovement(sf::Vector2u windowSize, sf::Vector2f ballPosition) override;
 };

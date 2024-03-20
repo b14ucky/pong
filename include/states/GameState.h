@@ -7,6 +7,7 @@
 #include "State.h"
 #include "Ball.h"
 #include "HumanPlayer.h"
+#include "AIPlayer.h"
 
 class GameState : public State
 {
@@ -14,7 +15,7 @@ private:
     // game objects
     Ball ball;
     HumanPlayer playerLeft;
-    HumanPlayer playerRight;
+    AIPlayer playerRight;
 
     // window
     sf::RenderWindow *window;

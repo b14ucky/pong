@@ -1,11 +1,22 @@
-// #pragma once
+#pragma once
 
-// #include "Player.h"
-// #include "AIPaddle.h"
+#include <SFML/Graphics.hpp>
 
-// class HumanPlayer : public Player
-// {
-// private:
-//     // variables
-//     AIPaddle paddle;
-// };
+#include "Player.h"
+#include "AIPaddle.h"
+
+class AIPlayer : public Player
+{
+private:
+    int score;
+    sf::Font font;
+    sf::Text text;
+
+public:
+    // variables
+    AIPaddle paddle;
+
+    // constructors
+    AIPlayer();
+    AIPlayer(bool isComputer, sf::Font &font);
+};

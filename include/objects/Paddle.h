@@ -22,7 +22,7 @@ public:
     void moveUp();
     void moveDown();
     void setInitPosition(sf::Vector2f initPosition, float hitboxPositionX);
-    virtual void handleMovement(float windowSizeY);
+    virtual void handleMovement(sf::Vector2u windowSize, sf::Vector2f ballPosition) = 0;
 
     // getters/setters
     sf::FloatRect getHitboxBounds();

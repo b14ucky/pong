@@ -8,7 +8,7 @@ void GameState::initPlayers()
         Initializes the players of the Game class.
     */
     this->playerLeft = HumanPlayer(true, this->font);
-    this->playerRight = HumanPlayer(false, this->font);
+    this->playerRight = AIPlayer(false, this->font);
 }
 
 void GameState::initGameObjects()
@@ -52,22 +52,22 @@ void GameState::handleInput()
     /*
         Moves the paddles up or down depending on the key pressed.
     */
-    this->playerLeft.paddle.handleMovement(this->window->getSize().y);
-    this->playerRight.paddle.handleMovement(this->window->getSize().y);
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-    {
-        if (this->playerLeft.paddle.getPosition().y > 0)
-        {
-            this->playerLeft.paddle.moveUp();
-        }
-    }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-    {
-        if (this->playerLeft.paddle.getPosition().y + this->playerLeft.paddle.getSize().y < this->window->getSize().y)
-        {
-            this->playerLeft.paddle.moveDown();
-        }
-    }
+    this->playerLeft.paddle.handleMovement(this->window->getSize(), this->ball.getPosition());
+    this->playerRight.paddle.handleMovement(this->window->getSize(), this->ball.getPosition());
+    // if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+    // {
+    //     if (this->playerLeft.paddle.getPosition().y > 0)
+    //     {
+    //         this->playerLeft.paddle.moveUp();
+    //     }
+    // }
+    // if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+    // {
+    //     if (this->playerLeft.paddle.getPosition().y + this->playerLeft.paddle.getSize().y < this->window->getSize().y)
+    //     {
+    //         this->playerLeft.paddle.moveDown();
+    //     }
+    // }
 }
 
 // main update/render functions

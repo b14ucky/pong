@@ -10,8 +10,11 @@ UserPaddle::UserPaddle()
 
 // methods
 
-void UserPaddle::handleMovement(float windowSizeY)
+void UserPaddle::handleMovement(sf::Vector2u windowSize, sf::Vector2f ballPosition)
 {
+    /*
+        Handles the movement of the user paddle.
+    */
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
     {
         if (this->getPosition().y > 0)
@@ -21,7 +24,7 @@ void UserPaddle::handleMovement(float windowSizeY)
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
     {
-        if (this->getPosition().y + this->getSize().y < windowSizeY)
+        if (this->getPosition().y + this->getSize().y < windowSize.y)
         {
             this->moveDown();
         }

@@ -43,8 +43,6 @@ void Paddle::setInitPosition(sf::Vector2f initPosition, float hitboxPositionX)
     this->hitbox.setPosition(this->hitboxPositionX, this->initPosition.y);
 }
 
-void Paddle::handleMovement(float windowSizeY) {}
-
 // getters
 
 sf::FloatRect Paddle::getHitboxBounds()

@@ -4,6 +4,7 @@
 
 #include "Player.h"
 #include "HumanPlayer.h"
+#include "AIPlayer.h"
 
 class Ball : public sf::CircleShape
 {
