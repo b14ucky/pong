@@ -1,7 +1,6 @@
 #include "Paddle.h"
 
 // constructor
-
 Paddle::Paddle()
 {
     /*
