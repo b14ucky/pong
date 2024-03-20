@@ -5,7 +5,7 @@
 
 class Paddle : public sf::RectangleShape
 {
-private:
+protected:
     // variables
     int height;
     int width;
@@ -23,7 +23,9 @@ public:
     void moveUp();
     void moveDown();
     void setInitPosition(sf::Vector2f initPosition, float hitboxPositionX);
+    virtual void handleMovement(sf::Vector2u windowSize, sf::Vector2f ballPosition) = 0;
 
-    // getters
+    // getters/setters
     sf::FloatRect getHitboxBounds();
+    void setMoveSpeed(float moveSpeed);
 };

@@ -6,12 +6,10 @@ Paddle::Paddle()
     /*
         The constructor of the Paddle class. Initializes the paddle's size, color and move speed.
     */
-    this->height = 130;
-    this->width = 30;
     this->moveSpeed = 2.5f;
-    this->setSize(sf::Vector2f(this->width, this->height));
+    this->setSize(sf::Vector2f(30, 130));
     this->setFillColor(sf::Color::White);
-    this->hitbox.setSize(sf::Vector2f(2.f, this->height));
+    this->hitbox.setSize(sf::Vector2f(2.f, 130));
     this->hitbox.setFillColor(sf::Color::Red);
 }
 
@@ -33,7 +31,7 @@ void Paddle::moveUp()
 void Paddle::moveDown()
 {
     this->move(sf::Vector2f(0, this->moveSpeed));
-    this->hitbox.move(sf::Vector2f(0, -this->moveSpeed));
+    this->hitbox.move(sf::Vector2f(0, this->moveSpeed));
 }
 
 void Paddle::setInitPosition(sf::Vector2f initPosition, float hitboxPositionX)
@@ -49,4 +47,11 @@ void Paddle::setInitPosition(sf::Vector2f initPosition, float hitboxPositionX)
 sf::FloatRect Paddle::getHitboxBounds()
 {
     return this->hitbox.getGlobalBounds();
+}
+
+// settters
+
+void Paddle::setMoveSpeed(float moveSpeed)
+{
+    this->moveSpeed = moveSpeed;
 }
