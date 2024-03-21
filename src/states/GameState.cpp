@@ -27,12 +27,13 @@ void GameState::initGameObjects()
 
 // constructors/destructors
 
-GameState::GameState(sf::RenderWindow *window, sf::Font &font)
+GameState::GameState(sf::RenderWindow *window, StateManager *stateManager, sf::Font &font)
 {
     /*
         The constructor of the Game class. Calls all the init functions to initialize the game.
     */
     this->window = window;
+    this->stateManager = stateManager;
     this->font = font;
     this->initPlayers();
     this->initGameObjects();

@@ -13,7 +13,6 @@ class Player
 {
 protected:
     int score;
-    sf::Font font;
     sf::Text text;
 
 public:
@@ -30,6 +29,5 @@ public:
 
     // init methods
     void initVariables();
-    void initFont();
     void initText(sf::Font &font);
 };

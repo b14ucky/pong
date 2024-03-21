@@ -4,6 +4,7 @@
 
 #include <iostream>
 
+#include "StateManager.h"
 #include "State.h"
 #include "Ball.h"
 #include "HumanPlayer.h"
@@ -21,14 +22,16 @@ private:
     sf::RenderWindow *window;
     sf::Font font;
 
-public:
-    // constructors/destructors
-    GameState(sf::RenderWindow *window, sf::Font &font);
-    virtual ~GameState();
-
     // init methods
     void initGameObjects();
     void initPlayers();
+
+    StateManager *stateManager;
+
+public:
+    // constructors/destructors
+    GameState(sf::RenderWindow *window, StateManager *stateManager, sf::Font &font);
+    virtual ~GameState();
 
     // main update/render methods
     void update() override;

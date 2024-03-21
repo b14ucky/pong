@@ -10,24 +10,13 @@ void Player::initVariables()
     this->score = 0;
 }
 
-void Player::initFont()
-{
-    /*
-        Initializes the font of the Player class.
-    */
-    if (!this->font.loadFromFile("C:/Windows/Fonts/arial.ttf"))
-    {
-        std::cout << "Error: Player::initFont: Could not load font from file." << std::endl;
-    }
-}
-
 void Player::initText(sf::Font &font)
 {
     /*
         Initializes the text of the Player class.
     */
     this->text.setFont(font);
-    this->text.setCharacterSize(50);
+    this->text.setCharacterSize(75);
     this->text.setFillColor(sf::Color::White);
     this->text.setString("00");
     int textWidth = this->text.getGlobalBounds().width;
@@ -57,7 +46,6 @@ Player::Player(bool isComputer, sf::Font &font)
     */
     this->isComputer = isComputer;
     this->initVariables();
-    this->initFont();
     this->initText(font);
 }
 

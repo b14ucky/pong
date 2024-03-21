@@ -1,5 +1,4 @@
 #include "App.h"
-#include "GameState.h"
 
 // private functions
 void App::initWindow()
@@ -26,7 +25,7 @@ void App::initFont()
 
 void App::update()
 {
-    this->stateManager.update();
+    this->stateManager->update();
 }
 
 void App::render()
@@ -35,7 +34,7 @@ void App::render()
         Renders current state objects to the window. Clears the window at the beginning and sets the background color to black.
     */
     this->window->clear(sf::Color::Black);
-    this->stateManager.render();
+    this->stateManager->render();
     this->window->display();
 }
 
@@ -45,6 +44,7 @@ App::App()
     /*
         The constructor of the App class. Calls the initWindow function to initialize the window.
     */
+    this->stateManager = new StateManager();
     this->initWindow();
     this->initFont();
 }
@@ -55,6 +55,7 @@ App::~App()
         The destructor of the App class. Deletes the window pointer.
     */
     delete this->window;
+    delete this->stateManager;
 }
 
 void App::run()
@@ -62,7 +63,7 @@ void App::run()
     /*
         The run function of the App class. Runs the game loop.
     */
-    this->stateManager.setState(std::make_unique<GameState>(this->window, this->font));
+    this->stateManager->setState(std::make_unique<MenuState>(this->window, this->stateManager, this->font));
 
     while (this->window->isOpen())
     {

@@ -2,11 +2,14 @@
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
-#include <SFML/System.hpp>
-#include <SFML/Audio.hpp>
-#include <SFML/Network.hpp>
+// #include <SFML/System.hpp>
+// #include <SFML/Audio.hpp>
+// #include <SFML/Network.hpp>
+
+#include <iostream>
 
 #include "StateManager.h"
+#include "MenuState.h"
 
 class App
 {
@@ -16,7 +19,7 @@ private:
     sf::VideoMode videoMode;
     sf::Event event;
     sf::Font font;
-    StateManager stateManager;
+    StateManager *stateManager;
 
 public:
     // constructors/destructors/run

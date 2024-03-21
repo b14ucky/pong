@@ -5,6 +5,8 @@
 #include "State.h"
 #include <SFML/Graphics.hpp>
 
+class State;
+
 class StateManager
 {
 private:
