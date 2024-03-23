@@ -23,7 +23,12 @@ public:
     float &operator()(int row, int column);
     const float &operator()(int row, int column) const;
     Matrix operator*(const Matrix &other) const;
-    Matrix operator*(float scalar);
+    Matrix operator*(float scalar) const;
+    Matrix operator/(float scalar) const;
+    Matrix operator+(const Matrix &other) const;
+    Matrix operator+(float scalar) const;
+    Matrix operator-(const Matrix &other) const;
+    Matrix operator-(float scalar) const;
     void operator=(const Matrix &other);
     void operator=(std::initializer_list<std::initializer_list<float>> values);
     void transpose();

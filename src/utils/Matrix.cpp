@@ -122,7 +122,7 @@ Matrix Matrix::operator*(const Matrix &other) const
     return result;
 }
 
-Matrix Matrix::operator*(float scalar)
+Matrix Matrix::operator*(float scalar) const
 {
     /*
         This method multiplies each element of the matrix with the given scalar value.
@@ -137,6 +137,102 @@ Matrix Matrix::operator*(float scalar)
         }
     }
 
+    return result;
+}
+
+Matrix Matrix::operator/(float scalar) const
+{
+    /*
+        This method divides each element of the matrix by the given scalar value.
+        It return a new Matrix object with the result of the division.
+    */
+    Matrix result(this->rows, this->columns);
+    for (int i = 0; i < this->rows; ++i)
+    {
+        for (int j = 0; j < this->columns; ++j)
+        {
+            result(i, j) = this->data[i][j] / scalar;
+        }
+    }
+
+    return result;
+}
+
+Matrix Matrix::operator+(const Matrix &other) const
+{
+    /*
+        This method adds the current matrix to another matrix and returns a new Matrix object
+        as a result of the addition. If the shapes of the two matrices are not the same, the method
+        throws an error.
+    */
+    if (this->rows != other.rows || this->columns != other.columns)
+    {
+        throw std::invalid_argument("The shapes of the two matrices must be the same!");
+    }
+    Matrix result(this->rows, this->columns);
+    for (int i = 0; i < this->rows; ++i)
+    {
+        for (int j = 0; j < this->columns; ++j)
+        {
+            result(i, j) = this->data[i][j] + other(i, j);
+        }
+    }
+    return result;
+}
+
+Matrix Matrix::operator+(float scalar) const
+{
+    /*
+        This method adds the given scalar value to each element of the matrix.
+        It returns a new Matrix object with the result of the addition.
+    */
+    Matrix result(this->rows, this->columns);
+    for (int i = 0; i < this->rows; ++i)
+    {
+        for (int j = 0; j < this->columns; ++j)
+        {
+            result(i, j) = this->data[i][j] + scalar;
+        }
+    }
+    return result;
+}
+
+Matrix Matrix::operator-(const Matrix &other) const
+{
+    /*
+        This method subtracts the given matrix from the current matrix and returns a new Matrix object
+        as a result of the subtraction. If the shapes of the two matrices are not the same, the method
+        throws an error.
+    */
+    if (this->rows != other.rows || this->columns != other.columns)
+    {
+        throw std::invalid_argument("The shapes of the two matrices must be the same!");
+    }
+    Matrix result(this->rows, this->columns);
+    for (int i = 0; i < this->rows; ++i)
+    {
+        for (int j = 0; j < this->columns; ++j)
+        {
+            result(i, j) = this->data[i][j] - other(i, j);
+        }
+    }
+    return result;
+}
+
+Matrix Matrix::operator-(float scalar) const
+{
+    /*
+        This method subtracts the given scalar value from each element of the matrix.
+        It returns a new Matrix object with the result of the subtraction.
+    */
+    Matrix result(this->rows, this->columns);
+    for (int i = 0; i < this->rows; ++i)
+    {
+        for (int j = 0; j < this->columns; ++j)
+        {
+            result(i, j) = this->data[i][j] - scalar;
+        }
+    }
     return result;
 }
 
