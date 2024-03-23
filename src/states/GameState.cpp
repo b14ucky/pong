@@ -8,7 +8,7 @@ void GameState::initPlayers()
         Initializes the players of the Game class.
     */
     this->playerLeft = HumanPlayer(true, this->font);
-    this->playerRight = AIPlayer(false, this->font);
+    this->playerRight = ComputerPlayer(false, this->font);
 }
 
 void GameState::initGameObjects()

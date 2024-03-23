@@ -7,7 +7,7 @@
 
 #include <iostream>
 
-class AIPaddle : public Paddle
+class ComputerPaddle : public Paddle
 {
 private:
     // variables
@@ -15,7 +15,7 @@ private:
 
 public:
     // constructor
-    AIPaddle();
+    ComputerPaddle();
 
     // methods
     void handleMovement(sf::Vector2u windowSize, sf::Vector2f) override;

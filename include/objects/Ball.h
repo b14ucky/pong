@@ -4,7 +4,7 @@
 
 #include "Player.h"
 #include "HumanPlayer.h"
-#include "AIPlayer.h"
+#include "ComputerPlayer.h"
 #include "RandomNumberGenerator.h"
 
 class Ball : public sf::CircleShape

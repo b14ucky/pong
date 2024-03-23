@@ -3,9 +3,9 @@
 #include <SFML/Graphics.hpp>
 
 #include "Player.h"
-#include "AIPaddle.h"
+#include "ComputerPaddle.h"
 
-class AIPlayer : public Player
+class ComputerPlayer : public Player
 {
 private:
     int score;
@@ -14,9 +14,9 @@ private:
 
 public:
     // variables
-    AIPaddle paddle;
+    ComputerPaddle paddle;
 
     // constructors
-    AIPlayer();
-    AIPlayer(bool isComputer, sf::Font &font);
+    ComputerPlayer();
+    ComputerPlayer(bool isComputer, sf::Font &font);
 };

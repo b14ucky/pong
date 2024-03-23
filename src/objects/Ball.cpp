@@ -99,6 +99,6 @@ void Ball::handleOutOfBounds()
 }
 
 template void Ball::handleCollisions(HumanPlayer &playerLeft, HumanPlayer &playerRight, sf::RenderWindow *window);
-template void Ball::handleCollisions(AIPlayer &playerLeft, AIPlayer &playerRight, sf::RenderWindow *window);
-template void Ball::handleCollisions(HumanPlayer &playerLeft, AIPlayer &playerRight, sf::RenderWindow *window);
-template void Ball::handleCollisions(AIPlayer &playerLeft, HumanPlayer &playerRight, sf::RenderWindow *window);
+template void Ball::handleCollisions(ComputerPlayer &playerLeft, ComputerPlayer &playerRight, sf::RenderWindow *window);
+template void Ball::handleCollisions(HumanPlayer &playerLeft, ComputerPlayer &playerRight, sf::RenderWindow *window);
+template void Ball::handleCollisions(ComputerPlayer &playerLeft, HumanPlayer &playerRight, sf::RenderWindow *window);

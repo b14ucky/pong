@@ -1,8 +1,8 @@
-#include "AIPaddle.h"
+#include "ComputerPaddle.h"
 
 // constructor
 
-AIPaddle::AIPaddle()
+ComputerPaddle::ComputerPaddle()
 {
     /*
         The default constructor of the AIPaddle class. Calls all the init methods to initialize the AI paddle.
@@ -12,7 +12,7 @@ AIPaddle::AIPaddle()
 
 // methods
 
-void AIPaddle::handleMovement(sf::Vector2u windowSize, sf::Vector2f ballPosition)
+void ComputerPaddle::handleMovement(sf::Vector2u windowSize, sf::Vector2f ballPosition)
 {
     /*
         Handles the movement of the AI paddle.
