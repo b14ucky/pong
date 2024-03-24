@@ -8,6 +8,7 @@
 #include "StateManager.h"
 #include "GameState.h"
 #include "MenuStates.h"
+#include "Difficulty.h"
 #include "Button.h"
 
 class MenuState : public State
@@ -18,14 +19,12 @@ private:
     // text
     sf::Text title;
     sf::Text creditsText;
+    sf::Text playText;
 
     // buttons
-    std::vector<Button> buttons;
-    Button play;
-    Button options;
-    Button credits;
-    Button exit;
-    Button goBack;
+    std::vector<Button> mainMenuButtons;
+    std::vector<Button> playButtons;
+    std::vector<Button> creditsButtons;
 
     sf::Vector2f scale;
 
@@ -43,7 +42,6 @@ private:
 
     // menu state
     MenuStates currentState;
-    MenuStates previousState;
 
     // init methods
     void initVariables();
@@ -55,8 +53,11 @@ private:
     void setMenuState(MenuStates state);
 
     void updateMousePositions();
-    void updateButtons();
+    void updateMainMenuButtons();
+    void updatePlayButtons();
+    void updateCreditsButtons();
     void renderMainMenuContent();
+    void renderPlayContent();
     void renderCreditsContent();
 
 public:

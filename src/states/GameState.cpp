@@ -8,7 +8,7 @@ void GameState::initPlayers()
         Initializes the players of the Game class.
     */
     this->playerLeft = HumanPlayer(true, this->font);
-    this->playerRight = ComputerPlayer(false, this->font);
+    this->playerRight = ComputerPlayer(false, this->font, this->difficulty);
 }
 
 void GameState::initGameObjects()
@@ -27,7 +27,7 @@ void GameState::initGameObjects()
 
 // constructors/destructors
 
-GameState::GameState(sf::RenderWindow *window, StateManager *stateManager, sf::Font &font)
+GameState::GameState(sf::RenderWindow *window, StateManager *stateManager, sf::Font &font, Difficulty difficulty)
 {
     /*
         The constructor of the Game class. Calls all the init functions to initialize the game.
@@ -35,6 +35,7 @@ GameState::GameState(sf::RenderWindow *window, StateManager *stateManager, sf::F
     this->window = window;
     this->stateManager = stateManager;
     this->font = font;
+    this->difficulty = difficulty;
     this->initPlayers();
     this->initGameObjects();
 }

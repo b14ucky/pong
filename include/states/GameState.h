@@ -9,6 +9,7 @@
 #include "Ball.h"
 #include "HumanPlayer.h"
 #include "ComputerPlayer.h"
+#include "Difficulty.h"
 
 class GameState : public State
 {
@@ -27,10 +28,11 @@ private:
     void initPlayers();
 
     StateManager *stateManager;
+    Difficulty difficulty;
 
 public:
     // constructors/destructors
-    GameState(sf::RenderWindow *window, StateManager *stateManager, sf::Font &font);
+    GameState(sf::RenderWindow *window, StateManager *stateManager, sf::Font &font, Difficulty difficulty);
     virtual ~GameState();
 
     // main update/render methods

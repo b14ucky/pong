@@ -7,7 +7,6 @@ void MenuState::initVariables()
     this->scale.x = 1.115f;
     this->scale.y = 1.115f;
     this->currentState = MenuStates::MainMenu;
-    this->previousState = MenuStates::MainMenu;
 }
 
 void MenuState::initFont()
@@ -22,6 +21,7 @@ void MenuState::initFont()
 
     this->title.setFont(this->font);
     this->creditsText.setFont(this->font);
+    this->playText.setFont(this->font);
 }
 
 void MenuState::initText()
@@ -38,31 +38,39 @@ void MenuState::initText()
     this->creditsText.setFillColor(sf::Color::White);
     this->creditsText.setOrigin(creditsText.getGlobalBounds().getSize().x / 2, creditsText.getGlobalBounds().getSize().y / 2);
     this->creditsText.setPosition(this->window->getSize().x / 2, this->window->getSize().y / 2);
+
+    this->playText.setString("Game difficulty");
+    this->playText.setCharacterSize(100);
+    this->playText.setFillColor(sf::Color::White);
+    this->playText.setOrigin(playText.getGlobalBounds().getSize().x / 2, playText.getGlobalBounds().getSize().y / 2);
+    this->playText.setPosition(this->window->getSize().x / 2, 100);
 }
 
 void MenuState::initButtons()
 {
-    this->play = Button("PLAY", this->font, 85, sf::Color::White, sf::Vector2f(this->window->getSize().x / 2, 255));
-    buttons.push_back(this->play);
+    /*
+        This function initializes the buttons in the MenuState.
+        It sets the text, font, size, color and position of the buttons.
+        It also adds the buttons to the corresponding vectors.
+    */
+    this->mainMenuButtons.push_back(Button("PLAY", this->font, 85, sf::Color::White, sf::Vector2f(this->window->getSize().x / 2, 270)));
+    this->mainMenuButtons.push_back(Button("OPTIONS", this->font, 85, sf::Color::White, sf::Vector2f(this->window->getSize().x / 2, 345)));
+    this->mainMenuButtons.push_back(Button("CREDITS", this->font, 85, sf::Color::White, sf::Vector2f(this->window->getSize().x / 2, 420)));
+    this->mainMenuButtons.push_back(Button("EXIT", this->font, 75, sf::Color::White, sf::Vector2f(this->window->getSize().x / 2, this->window->getSize().y - 100)));
 
-    this->options = Button("OPTIONS", this->font, 85, sf::Color::White, sf::Vector2f(this->window->getSize().x / 2, 330));
-    buttons.push_back(this->options);
+    this->playButtons.push_back(Button("EASY", this->font, 75, sf::Color::White, sf::Vector2f(this->window->getSize().x / 2, 270)));
+    this->playButtons.push_back(Button("MEDIUM", this->font, 75, sf::Color::White, sf::Vector2f(this->window->getSize().x / 2, 345)));
+    this->playButtons.push_back(Button("HARD", this->font, 75, sf::Color::White, sf::Vector2f(this->window->getSize().x / 2, 420)));
+    this->playButtons.push_back(Button("IMPOSSIBLE", this->font, 75, sf::Color::White, sf::Vector2f(this->window->getSize().x / 2, 495)));
+    this->playButtons.push_back(Button("GO BACK", this->font, 75, sf::Color::White, sf::Vector2f(this->window->getSize().x / 2, this->window->getSize().y - 100)));
 
-    this->credits = Button("CREDITS", this->font, 85, sf::Color::White, sf::Vector2f(this->window->getSize().x / 2, 405));
-    buttons.push_back(this->credits);
-
-    this->exit = Button("EXIT", this->font, 75, sf::Color::White, sf::Vector2f(this->window->getSize().x / 2, this->window->getSize().y - 100));
-    buttons.push_back(this->exit);
-
-    this->goBack = Button("GO BACK", this->font, 75, sf::Color::White, sf::Vector2f(this->window->getSize().x / 2, this->window->getSize().y - 100));
-    buttons.push_back(this->goBack);
+    this->creditsButtons.push_back(Button("GO BACK", this->font, 75, sf::Color::White, sf::Vector2f(this->window->getSize().x / 2, this->window->getSize().y - 100)));
 }
 
 // other private methods
 
 void MenuState::setMenuState(MenuStates state)
 {
-    this->previousState = this->currentState;
     this->currentState = state;
 }
 
@@ -75,13 +83,51 @@ void MenuState::updateMousePositions()
     this->mousePosView = this->window->mapPixelToCoords(mousePosWindow);
 }
 
-void MenuState::updateButtons()
+void MenuState::updateMainMenuButtons()
 {
     /*
-        This function updates the buttons in the MenuState.
+        This function updates the buttons in the main menu.
         It changes the scale of the buttons when the mouse hovers over them.
     */
-    for (auto &button : buttons)
+    for (auto &button : mainMenuButtons)
+    {
+        if (button.getGlobalBounds().contains(this->mousePosView))
+        {
+            button.setScale(this->scale);
+        }
+        else
+        {
+            button.setScale(1.0f, 1.0f);
+        }
+    }
+}
+
+void MenuState::updatePlayButtons()
+{
+    /*
+        This function updates the buttons in the play menu.
+        It changes the scale of the buttons when the mouse hovers over them.
+    */
+    for (auto &button : playButtons)
+    {
+        if (button.getGlobalBounds().contains(this->mousePosView))
+        {
+            button.setScale(this->scale);
+        }
+        else
+        {
+            button.setScale(1.0f, 1.0f);
+        }
+    }
+}
+
+void MenuState::updateCreditsButtons()
+{
+    /*
+        This function updates the buttons in the credits menu.
+        It changes the scale of the buttons when the mouse hovers over them.
+    */
+    for (auto &button : creditsButtons)
     {
         if (button.getGlobalBounds().contains(this->mousePosView))
         {
@@ -97,32 +143,40 @@ void MenuState::updateButtons()
 void MenuState::renderMainMenuContent()
 {
     /*
-        This function renders the text objects in the MenuState.
+        This function renders the contents of the main menu.
     */
     this->window->draw(title);
 
-    for (auto &button : buttons)
+    for (auto &button : mainMenuButtons)
     {
-        if (button.getString() != "GO BACK")
-        {
-            this->window->draw(button);
-        }
+        this->window->draw(button);
+    }
+}
+
+void MenuState::renderPlayContent()
+{
+    /*
+        This function renders the contents of the play menu.
+    */
+    this->window->draw(playText);
+
+    for (auto &button : playButtons)
+    {
+        this->window->draw(button);
     }
 }
 
 void MenuState::renderCreditsContent()
 {
     /*
-        This function renders the credits text.
+        This function renders the contents of the credits menu.
     */
-    for (auto &button : buttons)
-    {
-        if (button.getString() == "GO BACK")
-        {
-            this->window->draw(button);
-        }
-    }
     this->window->draw(creditsText);
+
+    for (auto &button : creditsButtons)
+    {
+        this->window->draw(button);
+    }
 }
 
 // constructors/destructors
@@ -152,7 +206,20 @@ void MenuState::update()
         This function updates the MenuState.
     */
     this->updateMousePositions();
-    this->updateButtons();
+    switch (this->currentState)
+    {
+    case MenuStates::MainMenu:
+        this->updateMainMenuButtons();
+        break;
+    case MenuStates::Play:
+        this->updatePlayButtons();
+        break;
+    case MenuStates::Credits:
+        this->updateCreditsButtons();
+        break;
+    default:
+        break;
+    }
 }
 
 void MenuState::render()
@@ -164,6 +231,9 @@ void MenuState::render()
     {
     case MenuStates::MainMenu:
         this->renderMainMenuContent();
+        break;
+    case MenuStates::Play:
+        this->renderPlayContent();
         break;
     case MenuStates::Credits:
         this->renderCreditsContent();
@@ -190,26 +260,48 @@ void MenuState::handleInput()
             {
             case MenuStates::MainMenu:
             {
-                if (this->play.getGlobalBounds().contains(this->mousePosView))
+                if (this->mainMenuButtons[0].getGlobalBounds().contains(this->mousePosView))
                 {
-                    this->stateManager->setState(std::make_unique<GameState>(this->window, this->stateManager, this->font));
+                    this->setMenuState(MenuStates::Play);
                 }
-                if (this->credits.getGlobalBounds().contains(this->mousePosView))
+                if (this->mainMenuButtons[2].getGlobalBounds().contains(this->mousePosView))
                 {
                     this->setMenuState(MenuStates::Credits);
                 }
-                if (this->exit.getGlobalBounds().contains(this->mousePosView))
+                if (this->mainMenuButtons[3].getGlobalBounds().contains(this->mousePosView))
                 {
                     this->window->close();
                 }
                 break;
             }
-            case MenuStates::Credits:
-            case MenuStates::Options:
+            case MenuStates::Play:
             {
-                if (this->goBack.getGlobalBounds().contains(this->mousePosView))
+                if (this->playButtons[0].getGlobalBounds().contains(this->mousePosView))
                 {
-                    this->setMenuState(this->previousState);
+                    this->stateManager->setState(std::make_unique<GameState>(this->window, this->stateManager, this->font, Difficulty::Easy));
+                }
+                if (this->playButtons[1].getGlobalBounds().contains(this->mousePosView))
+                {
+                    this->stateManager->setState(std::make_unique<GameState>(this->window, this->stateManager, this->font, Difficulty::Medium));
+                }
+                if (this->playButtons[2].getGlobalBounds().contains(this->mousePosView))
+                {
+                    this->stateManager->setState(std::make_unique<GameState>(this->window, this->stateManager, this->font, Difficulty::Hard));
+                }
+                if (this->playButtons[3].getGlobalBounds().contains(this->mousePosView))
+                {
+                    this->stateManager->setState(std::make_unique<GameState>(this->window, this->stateManager, this->font, Difficulty::Impossible));
+                }
+                if (this->playButtons[4].getGlobalBounds().contains(this->mousePosView))
+                {
+                    this->setMenuState(MenuStates::MainMenu);
+                }
+            }
+            case MenuStates::Credits:
+            {
+                if (this->creditsButtons[0].getGlobalBounds().contains(this->mousePosView))
+                {
+                    this->setMenuState(MenuStates::MainMenu);
                 }
                 break;
             }

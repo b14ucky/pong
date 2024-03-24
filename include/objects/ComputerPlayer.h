@@ -4,6 +4,7 @@
 
 #include "Player.h"
 #include "ComputerPaddle.h"
+#include "Difficulty.h"
 
 class ComputerPlayer : public Player
 {
@@ -18,5 +19,5 @@ public:
 
     // constructors
     ComputerPlayer();
-    ComputerPlayer(bool isComputer, sf::Font &font);
+    ComputerPlayer(bool isComputer, sf::Font &font, Difficulty difficulty);
 };
