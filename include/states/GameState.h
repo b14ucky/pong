@@ -10,25 +10,55 @@
 #include "HumanPlayer.h"
 #include "ComputerPlayer.h"
 #include "Difficulty.h"
+#include "Button.h"
+#include "GameStates.h"
+#include "MenuState.h"
 
 class GameState : public State
 {
 private:
     // game objects
     Ball ball;
+    sf::RectangleShape middleLine;
+    sf::RectangleShape endGameTextBackground;
+
+    // players
     HumanPlayer playerLeft;
     ComputerPlayer playerRight;
+
+    // text
+    sf::Text endGameText;
+
+    // buttons
+    std::vector<Button> endGameButtons;
 
     // window
     sf::RenderWindow *window;
     sf::Font font;
 
+    // mouse
+    sf::Vector2i mousePosWindow;
+    sf::Vector2f mousePosView;
+
     // init methods
     void initGameObjects();
     void initPlayers();
+    void initButtons();
+    void initText();
 
     StateManager *stateManager;
     Difficulty difficulty;
+
+    // variables
+    bool isGameOver;
+    bool mouseHeld;
+    GameStates currentState;
+
+    // other private methods
+    void resetGame();
+    void updateGameOver();
+    void updateMousePositions();
+    void updateGameOverMenu();
 
 public:
     // constructors/destructors
@@ -39,6 +69,6 @@ public:
     void update() override;
     void render() override;
 
-    // other methods
+    // other public methods
     void handleInput() override;
 };

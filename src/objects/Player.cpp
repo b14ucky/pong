@@ -76,3 +76,13 @@ void Player::renderScore(sf::RenderWindow *window)
     */
     window->draw(this->text);
 }
+
+// getters/setters
+
+int Player::getScore()
+{
+    /*
+        Returns the score of the player.
+    */
+    return this->score;
+}

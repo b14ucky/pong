@@ -10,7 +10,7 @@ Paddle::Paddle()
     this->setSize(sf::Vector2f(30, 130));
     this->setFillColor(sf::Color::White);
     this->hitbox.setSize(sf::Vector2f(2.f, 130));
-    this->hitbox.setFillColor(sf::Color::Red);
+    this->hitbox.setFillColor(sf::Color::Transparent);
 }
 
 // methods

@@ -30,4 +30,7 @@ public:
     // init methods
     void initVariables();
     void initText(sf::Font &font);
+
+    // getters/setters
+    int getScore();
 };
